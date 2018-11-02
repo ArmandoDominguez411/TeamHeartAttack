@@ -11,6 +11,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     public EnemySelectButton EnemyButton;
 
+    AudioSource audioData;
+
     public enum TurnState
     {
         PROCESSING,
@@ -153,6 +155,8 @@ public class EnemyStateMachine : MonoBehaviour
             Vector3 heroPosition = new Vector3(HeroToAttack.transform.position.x, HeroToAttack.transform.position.y, HeroToAttack.transform.position.z + 1.0f);
             while (moveTowards(heroPosition)) { yield return null; }
 
+            audioData = GetComponent<AudioSource>();
+            audioData.Play(0);
             // wait
             yield return new WaitForSeconds(0.5f);
 
